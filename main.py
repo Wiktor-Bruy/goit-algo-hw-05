@@ -19,13 +19,18 @@ def input_error(func):
             return "Invalid command. Use the 'help' command to get valid commands."
         except KeyError:
             return "Contact not found"
+        except:
+            return "Invalid command. Use the 'help' command to get valid commands."
 
     return inner
 
 def parse_comand(user_input: str):
+    if not user_input:
+        return "", []
     cmd, *args = user_input.split()
     cmd = cmd.lower()
     return cmd, args
+
 
 @input_error
 def add_contact(args: list, contacts: dict):
